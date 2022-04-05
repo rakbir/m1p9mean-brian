@@ -2,14 +2,14 @@ var express=require('express')
 var commandes=express.Router();
 var bodyParser=require('body-parser')
 const mongoClient=require('mongodb').MongoClient
-const url=require('../constants').url;
+const constants=require('../constants');
 var objectId=require('mongodb').ObjectId;
 
 commandes.use(bodyParser.urlencoded({ extended: false }))
 commandes.use(bodyParser.json());
 
-mongoClient.connect(url).then(client=>{
-	const db=client.db("meandb")
+mongoClient.connect(constants.url).then(client=>{
+	const db=client.db(constants.db)
 	const collection=db.collection("commandes")
 
 	commandes.get('/', function(req, res){

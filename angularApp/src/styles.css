@@ -1,0 +1,24 @@
+.champ{
+    display:grid;
+    grid-template-columns:35% 65%;
+    padding:1.5%;
+    width:85%
+}
+
+label{
+    text-align: end;
+}
+
+input{
+    padding-left: 2%;
+    margin-left:2%;
+    border-radius: 5%;
+}
+
+.validation{
+    display:flex;
+    margin-top:1%;
+    margin-right:5%;
+    flex-direction: row-reverse;
+}
+

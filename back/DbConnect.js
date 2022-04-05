@@ -1,13 +1,15 @@
-const mongoClient=require('mongodb').MongoClient
+const constants=require('./constants');
+const mongoClient = require('mongodb').MongoClient;
 
-function dbConnect(url){
-	var cli;
-	mongoClient.connect(url, (err, client)=>{
-		if(err) return console.error(err)
-		console.log("connected to database")
-		cli = client
-	})
-	return cli;
-}
+var mongoclient=new mongoClient(constants.url)
+mongoclient.connect()
 
-exports.connect=dbConnect;
+// mongoClient.connect()
+
+// mongoClient.db("meandb").collection("utilisateurs").find().toArray().then(results=>{
+	// console.log("1", results)
+	// mongoClient.close()
+// })
+
+
+module.exports=mongoclient;

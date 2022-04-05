@@ -1,0 +1,16 @@
+<div>
+    <div *ngFor="let restaurant of restaurants" class="restaurant">
+        <div id="entete">
+            <h4>{{restaurant.nom}}</h4>
+            <p>Nombre étoiles</p>
+        </div>
+        <div id="renseignements">
+            <p>Adress: {{ restaurant.adresse }}</p>
+            <p> contacts: {{ restaurant.mail}}</p>
+            <p *ngIf="restaurant.description">Spécialités: {{restaurant.description}}</p>  
+        </div>
+        <div class="validation">
+            <button>Voir </button>
+        </div>
+    </div> 
+</div>

@@ -3,13 +3,13 @@ var plats=express.Router();
 var bodyParser=require('body-parser')
 const mongoClient=require('mongodb').MongoClient
 var objectId=require('mongodb').ObjectId;
+const constants=require('../constants');
+const middlewares=require('../middlewares/middlewares')
+// plats.use(bodyParser.urlencoded({ extended: false }))
+// plats.use(bodyParser.json());
 
-const url=require('../constants').url;
 
-plats.use(bodyParser.urlencoded({ extended: false }))
-plats.use(bodyParser.json());
-
-mongoClient.connect(url).then(client=>{
+mongoClient.connect(constants.url).then(client=>{
 	const db=client.db("meandb")
 	const collection=db.collection("utilisateurs")
 	
@@ -24,9 +24,10 @@ mongoClient.connect(url).then(client=>{
 		})
 	})
 	
-	plats.put('/nouveau/:restaurant', function(req, res){
+	plats.put('/nouveau', middlewares.checkSessionCookie, function(req, res){
+		var restaurant=new objectId(req.body.restaurant)
+		delete req.body.restaurant;
 		var plat=req.body;
-		var restaurant=new objectId(req.params.restaurant)
 		collection.findOneAndUpdate(
 		{_id:restaurant},
 		{
