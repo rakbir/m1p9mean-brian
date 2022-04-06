@@ -1,0 +1,22 @@
+#banniere{
+    min-height:10vh;
+    border: solid 1px red
+}
+
+#milieu{
+    display:grid;
+    grid-template-columns: 2fr 6fr 1fr;
+    height: calc(100vh - 10vh - 10vh);
+    margin-top:0.5rem;
+    margin-bottom:0.5rem
+}
+ 
+#gauche{
+    border: solid 1px rgb(118, 78, 78);
+}
+
+#changeant{
+    margin-left:0.5rem;
+    border: solid 1px black;
+    overflow-y:scroll;
+}

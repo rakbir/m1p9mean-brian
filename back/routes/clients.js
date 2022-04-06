@@ -29,6 +29,14 @@ mongoClient.connect(url)
 		collection.insertOne(req.body)
 		res.send("inscription terminée")
 	})
+	
+	clients.get('/liste', function(req, res){
+		collection.find({type:"client"}).toArray()
+		.then(result=>{
+			console.log(result)
+			res.send(result)
+		})
+	})
 })
 .catch(error=>console.error(error))
 

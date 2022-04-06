@@ -1,13 +1,15 @@
 <div id="login">
-    <div class="champ">
-        <label>Mail:</label>
-        <input type="text" id="mail" [formControl]="formulaireConnexion.mail">
-    </div>
-    <div class="champ">
-        <label>Mot de passe:</label>
-        <input type="password" id="mdp" [formControl]="formulaireConnexion.mdp">
-    </div>
-    <div class="validation">
-        <button type="button" (click)="envoi()">Connexion</button>
-    </div>
+    <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
+        <div class="champ">
+            <label>Mail:</label>
+            <input type="text" id="mail" formControlName="mail">
+        </div>
+        <div class="champ">
+            <label>Mot de passe:</label>
+            <input type="password" id="mdp" formControlName="mdp">
+        </div>
+        <div class="validation">
+            <button type="button" (click)="envoi()">Connexion</button>
+        </div>
+    </form>
 </div>

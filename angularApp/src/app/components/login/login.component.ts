@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { urls } from 'src/environments/environment';
@@ -10,11 +10,13 @@ import { urls } from 'src/environments/environment';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  formulaireConnexion={
-    mail:new FormControl('nomutilisateur@mail.com'),
-    mdp:new FormControl(''),
-    type:""
-  }
+
+  formulaire=new FormGroup(
+    {
+      mail:new FormControl(''),
+      mdp:new FormControl('')
+    })
+
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
@@ -22,22 +24,33 @@ export class LoginComponent implements OnInit {
   }
 
   envoi(){
-  const onError=()=>{
-      alert('Il y a eu un problème au niveau de la connexion au serveur, veuillez réessayer');
-  }
-    this.httpClient.post(urls.login, {mail:this.formulaireConnexion.mail.value, mdp:this.formulaireConnexion.mdp.value, type:this.formulaireConnexion.type})
-      .subscribe((dataFromserver:any)=>{ 
-        console.log(dataFromserver);
-        /*switch (dataFromserver.meta.status) {
+    var redirect="";
+    var type="client";    
 
-        case 0:
-          localStorage.setItem("admin-session", JSON.stringify(dataFromserver.data));
-          this.router.navigateByUrl('admin');
-          break;
-        case 1:
-          alert(dataFromserver.meta.message);
-          break;
-      }*/
-    }, onError);
+    if(this.router.url=='responsable/login'){
+      redirect="responsable";
+      type="responsable";
+    }else if(this.router.url=="livreur/login"){
+      type="livreur";
+      redirect="livreur";
+    }else if(this.router.url=="restaurant/login"){
+      type="restaurant";
+      redirect="restaurant/login";
+    }
+    this.formulaire.value.type=type;
+    console.log(this.formulaire.value)
+
+    const onError=()=>{
+        alert('Il y a eu un problème au niveau de la connexion au serveur, veuillez réessayer');
+    }
+
+    this.httpClient.post(urls.login, this.formulaire.value)
+      .subscribe((dataFromserver:any)=>{ 
+        dataFromserver.status==1 ? this.router.navigateByUrl(redirect) : alert(dataFromserver.message);
+      }, onError);
+  }
+
+  onSubmit(){
+    this.envoi();
   }
 }

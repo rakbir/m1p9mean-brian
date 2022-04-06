@@ -9,6 +9,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ListeRestosComponent } from './components/liste-restos/liste-restos.component';
 import { TestComponent } from './components/test/test.component';
 import { AffichageProfilComponent } from './components/affichage-profil/affichage-profil.component';
+import { ClientComponent } from './components/client/client.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { AffichageProfilComponent } from './components/affichage-profil/affichag
     LoginComponent,
     ListeRestosComponent,
     TestComponent,
-    AffichageProfilComponent
+    AffichageProfilComponent,
+    ClientComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

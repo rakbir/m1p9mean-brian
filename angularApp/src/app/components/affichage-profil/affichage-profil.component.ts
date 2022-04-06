@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-affichage-profil',
@@ -8,13 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AffichageProfilComponent implements OnInit {
 
-  user:any;
+  username:any;
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient, private router: Router) { }
 
   ngOnInit(): void {
-/*    this.httpClient.get('http://localhost:3000/utilisateurs/session')*/
-    
-  }
+    const onError=()=>{
+      alert('Il y a eu un problème au niveau de la connexion au serveur, veuillez réessayer');
+    }
 
+    this.httpClient.get('http://localhost:3000/utilisateurs/session')
+    .subscribe((dataFromServer:any)=>{
+       this.username=dataFromServer.nom;
+    }, onError);
+
+    
+
+}
 }

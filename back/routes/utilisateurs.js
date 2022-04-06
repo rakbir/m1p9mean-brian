@@ -20,37 +20,33 @@ mongoClient.connect(constants.url)
 	// })
 	
 	utilisateurs.get("/session", function(req, res){
+		var user={}
 		if(req.session.user){
-			res.json(req.session.user)
+			user=req.session.user
 		}
+		res.send(user);
 	})
 	
 	utilisateurs.post('/login', function(req, res){
 		var message="";
-		var status=0;
-		collection.findOne({mail:req.body.mail.value, mdp:req.body.mdp.value, type:"client"})
+		var statusOp=0;
+		collection.findOne(req.body)
 		.then(result=>{
+			console.log(result)
 			if(result==null){
-				message='La combinaison des identifiants ne correspond à aucun compte'
-				status=0;
-				ob =result;
+				message="La combinaison des identifiants ne correspond à aucun compte"
 			}else{
-				console.log(result)
 				req.session.user=result
 				message="ok";
-				status=1;
+				statusOp=1;
 			}
-			res.send({message:message, status:status})
+			res.send({message:message, status:statusOp})
 		})
-	})
-	
-	utilisateurs.get('/getuser', function(req, res){
-		res.send(req.session)
-	})
+	});
 	
 	utilisateurs.get('/deconnexion', function(req, res){
 			
-	})
+	});
 	
 	utilisateurs.post('/inscription', function(req, res){
 		collection.insertMany(

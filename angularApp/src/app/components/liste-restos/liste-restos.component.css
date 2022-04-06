@@ -1,16 +1,36 @@
-#restaurant{
-    border: solid 1px blue;
-    width: 40%;
-    padding:0.5rem
+h2{
+    padding-left:1rem 
 }
+.restaurant{
+    border: solid 1px blue;
+    padding:0.5rem;
+}
+
+.restaurant:hover{
+    border: solid 1px gold
+}
+
+#liste{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:1fr 1fr;
+
+   /*flex-wrap: wrap;
+   gap: 10px;
+  gap: 10px 20px; /* row-gap column gap */
+    row-gap: 15px;
+    column-gap: 10px;
+    padding:0.5rem 
+}
+
 #entete{
-    border: solid green 1px;
+    border-bottom-style:inset;
     display: grid;
     grid-template-columns: 80% 10%;
 }
 
 p{
-    border: solid 1px black;
+    margin:0;
     font-size:small
 }
 

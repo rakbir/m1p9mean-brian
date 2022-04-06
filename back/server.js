@@ -15,8 +15,8 @@ app.use(bodyparser.urlencoded({extended:true}))
 app.use(bodyparser.json());
 app.use(cookieParser());
 app.use(session({secret:'secretkey',saveUninitialized: true,resave: true}));
-
-// app.use('/clients', clients);
+  
+app.use('/clients', clients);
 app.use('/restaurants', restaurants);
 // app.use('/commandes', commandes);
 app.use('/utilisateurs', utilisateurs);

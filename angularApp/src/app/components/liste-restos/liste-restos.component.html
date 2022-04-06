@@ -1,16 +1,21 @@
-<div>
-    <div *ngFor="let restaurant of restaurants" class="restaurant">
+<h2>Les restaurants</h2>
+<div id="liste">
+    <div class="restaurant" *ngFor="let restaurant of restaurants">
         <div id="entete">
             <h4>{{restaurant.nom}}</h4>
             <p>Nombre étoiles</p>
         </div>
         <div id="renseignements">
-            <p>Adress: {{ restaurant.adresse }}</p>
-            <p> contacts: {{ restaurant.mail}}</p>
+            <p>Adresse: {{ restaurant.adresse }}</p>
+            <p> Contacts: {{ restaurant.mail}}</p>
             <p *ngIf="restaurant.description">Spécialités: {{restaurant.description}}</p>  
         </div>
         <div class="validation">
-            <button>Voir </button>
+            <button>Voir la carte</button>
         </div>
-    </div> 
+    </div>
 </div>
+<div>
+    <button *ngIf="skip > 0" (click)="precedent()">Précedent</button>
+    <button *ngIf="page!=nbpages" (click)="suivant()">Suivant</button>
+</div> 
