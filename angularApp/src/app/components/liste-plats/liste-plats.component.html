@@ -1,0 +1,13 @@
+<h1>{{restaurant}}</h1>
+<div id="plats">
+    <div id="plat" *ngFor="let plat of plats; let i=index">
+        <div>
+            <p>{{plat.libelle}}</p>
+            <p>{{plat.description}}</p>
+            <p>{{plat.prix}} ariary</p>    
+        </div>
+        <div>
+            <input type="number" id="_{{i}}" value="1"><button (click)="ajout(i)">ajouter</button>
+        </div>
+    </div>
+</div>

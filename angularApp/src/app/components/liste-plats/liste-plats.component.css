@@ -1,0 +1,8 @@
+#plat{
+    display:flex;
+    flex-direction: row;
+}
+
+input{
+    width:50px
+}

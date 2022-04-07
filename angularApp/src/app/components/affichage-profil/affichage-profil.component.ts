@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { urls } from 'src/environments/environment';
 
 @Component({
   selector: 'app-affichage-profil',
@@ -18,7 +19,7 @@ export class AffichageProfilComponent implements OnInit {
       alert('Il y a eu un problème au niveau de la connexion au serveur, veuillez réessayer');
     }
 
-    this.httpClient.get('http://localhost:3000/utilisateurs/session')
+    this.httpClient.get(urls.user_session, {withCredentials:true})
     .subscribe((dataFromServer:any)=>{
        this.username=dataFromServer.nom;
     }, onError);

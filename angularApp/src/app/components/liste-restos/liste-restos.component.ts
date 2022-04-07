@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { urls } from 'src/environments/environment';
 import { VariablesGlobales } from '../../injectable/variablesGlobales';
 
 @Component({
@@ -39,12 +40,17 @@ export class ListeRestosComponent implements OnInit {
       alert('Il y a eu un problème au niveau de la connexion au serveur, veuillez réessayer');
     }
     
-    var t="http://localhost:3000/restaurants/liste/"+this.affichage+"/"+this.skip;
-    this.httpClient.get(t)
-    .subscribe((dataFromServer:any)=>{
-      this.restaurants=dataFromServer.restaurants;
-      this.total=dataFromServer.total;
-      this.nbpages=(this.total%this.affichage)==0 ? (this.total/this.affichage) : Math.floor(this.total/this.affichage)+1 ;
+    this.httpClient.get(urls.liste_restaurants+"/"+this.affichage+"/"+this.skip)
+    .subscribe((fromServer:any)=>{
+      switch(fromServer.status){
+        case 0:
+          break;
+        case 1:
+          this.restaurants=fromServer.data.restaurants;
+          this.total=fromServer.data.total;
+          this.nbpages=(this.total%this.affichage)==0 ? (this.total/this.affichage) : Math.floor(this.total/this.affichage)+1;
+          break;
+      }
     },onError);
   }
 

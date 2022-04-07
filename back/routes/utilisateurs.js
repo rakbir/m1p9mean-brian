@@ -1,52 +1,40 @@
 var express=require('express')
 var utilisateurs=express.Router();
-// const cors=require('cors');
 const mongoClient=require('mongodb').MongoClient
 const constants=require('../constants');
-// utilisateurs.use(cors);
 
 mongoClient.connect(constants.url)
 .then(client=>{
 	const db=client.db("meandb")
 	const collection=db.collection("utilisateurs")
 	
-	// utilisateurs.get('/', function(req, res){
-		// const curs=collection.find().toArray()
-		// .then(results=>{
-			// console.log(results);
-			// res.send(results)
-		// })
-		// .catch(error=>console.error(error))
-	// })
-	
 	utilisateurs.get("/session", function(req, res){
 		var user={}
 		if(req.session.user){
 			user=req.session.user
 		}
+		console.log("get the session:", req.session)
 		res.send(user);
 	})
 	
 	utilisateurs.post('/login', function(req, res){
-		var message="";
-		var statusOp=0;
 		collection.findOne(req.body)
 		.then(result=>{
-			console.log(result)
 			if(result==null){
-				message="La combinaison des identifiants ne correspond à aucun compte"
+				return res.status(404).send({message:"La combinaison des identifiants ne correspond à aucun compte"})
 			}else{
 				req.session.user=result
 				message="ok";
 				statusOp=1;
 			}
+			console.log("set the session: ", req.session)
 			res.send({message:message, status:statusOp})
 		})
 	});
 	
-	utilisateurs.get('/deconnexion', function(req, res){
+	// utilisateurs.get('/deconnexion', function(req, res){
 			
-	});
+	// });
 	
 	utilisateurs.post('/inscription', function(req, res){
 		collection.insertMany(

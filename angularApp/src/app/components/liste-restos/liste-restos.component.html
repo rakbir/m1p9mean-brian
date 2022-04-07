@@ -1,4 +1,4 @@
-<h2>Les restaurants</h2>
+<h1>Les restaurants</h1>
 <div id="liste">
     <div class="restaurant" *ngFor="let restaurant of restaurants">
         <div id="entete">
@@ -7,11 +7,11 @@
         </div>
         <div id="renseignements">
             <p>Adresse: {{ restaurant.adresse }}</p>
-            <p> Contacts: {{ restaurant.mail}}</p>
+            <p>Contacts: {{ restaurant.mail}}</p>
             <p *ngIf="restaurant.description">Spécialités: {{restaurant.description}}</p>  
         </div>
         <div class="validation">
-            <button>Voir la carte</button>
+            <a routerLink="/restaurants/{{ restaurant._id }}/carte">Voir la carte</a>
         </div>
     </div>
 </div>

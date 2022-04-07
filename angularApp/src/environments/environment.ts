@@ -7,7 +7,10 @@ export const environment = {
 };
 
 export const urls={
-  login:"http://localhost:3000/utilisateurs/login"
+  login:"http://localhost:3000/utilisateurs/login",
+  user_session:"http://localhost:3000/utilisateurs/session",
+  liste_restaurants:"http://localhost:3000/restaurants/liste",
+  carte_restaurant:"http://localhost:3000/plats/carte"  
 }
 
 /*

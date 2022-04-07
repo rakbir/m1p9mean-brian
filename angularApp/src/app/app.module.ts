@@ -11,6 +11,7 @@ import { TestComponent } from './components/test/test.component';
 import { AffichageProfilComponent } from './components/affichage-profil/affichage-profil.component';
 import { ClientComponent } from './components/client/client.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ListePlatsComponent } from './components/liste-plats/liste-plats.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FooterComponent } from './components/footer/footer.component';
     TestComponent,
     AffichageProfilComponent,
     ClientComponent,
-    FooterComponent
+    FooterComponent,
+    ListePlatsComponent
   ],
   imports: [
     BrowserModule,

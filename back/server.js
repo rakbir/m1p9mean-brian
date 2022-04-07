@@ -8,19 +8,21 @@ var clients=require('./routes/clients');
 var restaurants=require('./routes/restaurants');
 // var commandes=require('./routes/commandes');
 var utilisateurs=require('./routes/utilisateurs');
-// var plats=require('./routes/plats');
+var plats=require('./routes/plats');
 
-app.use(cors())
+app.use(cors({origin:true, credentials:true}))
 app.use(bodyparser.urlencoded({extended:true}))
 app.use(bodyparser.json());
 app.use(cookieParser());
-app.use(session({secret:'secretkey',saveUninitialized: true,resave: true}));
+const oneDay=24*3600000;
+app.use(session({secret:'secretkey',saveUninitialized: true, resave: true, cookie:{maxAge:oneDay}}));
   
 app.use('/clients', clients);
 app.use('/restaurants', restaurants);
 // app.use('/commandes', commandes);
 app.use('/utilisateurs', utilisateurs);
-// app.use('/plats', plats);
+app.use('/plats', plats);
+
 // const constants=require('./constants')
 // const mongoClient=require("mongodb").MongoClient
 // app.get('/', function(req, res){
@@ -30,6 +32,8 @@ app.use('/utilisateurs', utilisateurs);
 	// res.json({nom:"Rakoto", age:25})
 	// console.log(res)
 // })
+
+// app.options('*', cors())
 
 app.listen(3000);
 console.log("server démarré sur le port 3000")	

@@ -10,6 +10,8 @@ import { urls } from 'src/environments/environment';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  redirect="";
+  type="client";
 
   formulaire=new FormGroup(
     {
@@ -21,32 +23,40 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
+    if(this.router.url=='responsable/login'){
+      this.redirect="responsable";
+      this.type="responsable";
+    }else if(this.router.url=="livreur/login"){
+      this.type="livreur";
+      this.redirect="livreur";
+    }else if(this.router.url=="restaurant/login"){
+      this.type="restaurant";
+      this.redirect="restaurant/login";
+    }  
+
+    this.getUser();
+  }
+
+  getUser(){
+    const onError=()=>{
+      alert('Il y a eu un problème au niveau de la connexion au serveur');
+    }
+    this.httpClient.get(urls.user_session, {withCredentials:true})
+    .subscribe((dataFromServer:any)=>{
+      console.log(dataFromServer);
+       dataFromServer.type == this.type ? this.router.navigateByUrl(this.redirect) : 0
+    }, onError);
   }
 
   envoi(){
-    var redirect="";
-    var type="client";    
-
-    if(this.router.url=='responsable/login'){
-      redirect="responsable";
-      type="responsable";
-    }else if(this.router.url=="livreur/login"){
-      type="livreur";
-      redirect="livreur";
-    }else if(this.router.url=="restaurant/login"){
-      type="restaurant";
-      redirect="restaurant/login";
-    }
-    this.formulaire.value.type=type;
-    console.log(this.formulaire.value)
-
+    this.formulaire.value.type=this.type;
     const onError=()=>{
         alert('Il y a eu un problème au niveau de la connexion au serveur, veuillez réessayer');
     }
 
-    this.httpClient.post(urls.login, this.formulaire.value)
+    this.httpClient.post(urls.login, this.formulaire.value, {withCredentials:true})
       .subscribe((dataFromserver:any)=>{ 
-        dataFromserver.status==1 ? this.router.navigateByUrl(redirect) : alert(dataFromserver.message);
+        dataFromserver.status==1 ? this.router.navigateByUrl(this.redirect) : alert(dataFromserver.message);
       }, onError);
   }
 

@@ -13,15 +13,24 @@ mongoClient.connect(constants.url).then(client=>{
 	const db=client.db("meandb")
 	const collection=db.collection("utilisateurs")
 	
-	plats.get('/liste/:restaurant', function(req, res){
-		var restaurant=new objectId(req.params.restaurant)
-		collection.find({_id: restaurant}, {plats}).toArray()
-		.then(results=>{
-			res.send(results)
-		})
-		.catch(error=>{
-			console.error(error)
-		})
+	plats.get('/carte/:restaurant', function(req, res){
+		var restaurant=new objectId(req.params.restaurant);
+		var carte=collection.findOne(
+			{_id: restaurant},
+			{
+				projection: { nom:1, plats:1}
+			})
+			.then(result=>{
+				if(result==null){
+					res.send({status:0, message:"Contenu introuvable"})
+				}
+				result.plats=result.plats ? result.plats : [];
+				console.log(result)
+				res.send({status:1, data:result})
+			}) 
+			.catch(error=>{
+				console.error(error)
+			})
 	})
 	
 	plats.put('/nouveau', middlewares.checkSessionCookie, function(req, res){
