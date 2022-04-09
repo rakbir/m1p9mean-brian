@@ -6,8 +6,9 @@
             <p>{{plat.description}}</p>
             <p>{{plat.prix}} ariary</p>    
         </div>
-        <div>
-            <input type="number" id="_{{i}}" value="1"><button (click)="ajout(i)">ajouter</button>
+        <div class="inline">
+            <input type="number" id="_{{i}}" value="1">
+            <button class="bvert" (click)="commander(i)">ajouter</button>
         </div>
     </div>
 </div>

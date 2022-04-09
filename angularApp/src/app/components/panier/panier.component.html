@@ -1,0 +1,20 @@
+<div>
+    <table>
+        <tr>
+            <th>Restaurant</th>
+            <th>Plat</th>
+            <th>Prix unitaire</th>
+            <th>nombre</th>
+        </tr>
+        <tr *ngFor="let plat of panier; let i=index">
+            <td>{{plat.restaurant.nom}}</td>
+            <td>{{plat.libelle}}</td>
+            <td>{{plat.prix}}</td>
+            <td>{{plat.nombre}} <button (click)="suppression(i)">supprimer</button><button (click)="ajout(i)">ajouter</button></td>
+        </tr>
+    </table>
+    <p>TOTAL :{{total}} ar</p>
+</div>
+<div>
+    <button *ngIf="panier" (click)="validation()">Valider la commande</button>
+</div>

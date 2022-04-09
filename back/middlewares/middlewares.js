@@ -1,40 +1,37 @@
-
-const mongoClient=require('../DbConnect')
-
 module.exports={
-	checkSessionCookie: function(req, res, next){
-		if(req.cookies['SID']){
-			next()
-		}else{
-			res.send(404, "Veuillez-vous connecter s'il vous plaît")
-		}
-	},	
 	checkSession: function(req, res, next){
-		if(req.session.utilisateur){
+		if(req.session.user){
 			next()
 		}else{
-			res.send(404, "Veuillez-vous connecter s'il vous plaît")
+			res.send({status:2, message:"Veuillez-vous connecter s'il vous plaît"})
 		}
 	},
-	adminOnly: function(req, res, next){
-		if(req.session.type=="admin"){
+	responsableOnly: function(req, res, next){
+		if(req.session.user.type=="responsable"){
 			next()
 		}else{
 			res.send(404,"Veuillez-vous connecter s'il vous plaît")
 		}
 	},
 	clientOnly: function(req, res, next){
-		if(req.session.type="client"){
+		if(req.session.user.type=="client"){
 			next()
 		}else{
-			res.send(404,"Veuillez-vous connecter s'il vous plaît")
+			res.send({status:3,message:"Accès refusé"})
 		}
 	},
 	restaurantOnly: function(req, res, next){
-		if(req.session.type=="restaurant"){
+		if(req.session.user.type=="resto"){
 			next()
 		}else{
-			res.send(404,"Veuillez-vous connecter s'il vous plaît")
+			res.send({status:3,message:"Accès refusé"})
+		}
+	},
+	livreurOnly:function(req, res, next){
+		if(req.session.user.type=="livreur"){
+			next()
+		}else{
+			res.send({status:3,message:"Accès refusé"})
 		}
 	}
 }

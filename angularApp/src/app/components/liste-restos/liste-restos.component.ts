@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { urls } from 'src/environments/environment';
-import { VariablesGlobales } from '../../injectable/variablesGlobales';
 
 @Component({
   selector: 'app-liste-restos',
@@ -9,7 +8,8 @@ import { VariablesGlobales } from '../../injectable/variablesGlobales';
   styleUrls: ['./liste-restos.component.css']
 })
 export class ListeRestosComponent implements OnInit {
-
+  @Output() isConnected=new EventEmitter<any>();
+  
   affichage=6;
   skip=0;
   restaurants: any;
@@ -18,6 +18,11 @@ export class ListeRestosComponent implements OnInit {
   nbpages=0;
   
   constructor(private httpClient:HttpClient) { }
+
+  changeState(){
+    this.isConnected.emit();
+  }
+
 
   precedent():void{
     this.page--;

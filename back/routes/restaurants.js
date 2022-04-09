@@ -30,8 +30,6 @@ mongoClient.connect(constants.url)
 		});
 	})
 	
-	restaurants.get('/:restaurant/carte')
-	
 	restaurants.post('/inscription', function(req, res){
 		collection.insertOne(req.body)
 		res.send("inscription terminée")

@@ -1,8 +1,9 @@
 <div>
     <ng-template [ngIf]="username">
         <p>{{username}}</p>
+        <button>Se déconnecter</button>
     </ng-template>
     <ng-template [ngIf]="!username">
-        <p><a>Se connecter | S'inscrire</a></p>
+        <p><a routerLink="login">Se connecter | S'inscrire</a></p>
     </ng-template>
 </div>

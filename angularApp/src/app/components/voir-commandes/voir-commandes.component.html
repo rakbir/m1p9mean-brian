@@ -1,0 +1,21 @@
+<div>
+    <label>Du </label>            
+    <input class="debut" type="date" [(ngModel)]="dates.debut">
+    <label>au</label> 
+    <input class="fin" type="date" [(ngModel)]="dates.fin">   
+    <button (click)="findCommandes()"><i class="fa fa-search"></i>Afficher</button>
+</div>
+
+<div>
+    <h2>Commandes du {{dateDebut}} au {{dateFin}}</h2>
+    <div *ngFor="let commande of liste">
+        <div>
+            <p>Date: {{commande.commande_date}}</p>
+            <p>Etat: {{commande.etat}}</p>
+            <p><button (click)="findDetails(commande._id)">Voir détails</button></p>
+        </div>
+        <div id="_{{commande._id}}">
+
+        </div>
+    </div>
+</div>

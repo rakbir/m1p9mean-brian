@@ -4,11 +4,11 @@
 <div id="milieu">
     <div id="gauche">
         <div id="profil">
-            <app-affichage-profil></app-affichage-profil>
+            <app-affichage-profil ></app-affichage-profil>
         </div>
-        <div id="liens">Liens</div>
     </div>
     <div id="changeant">
+        <app-alert [message]="message"></app-alert>
         <router-outlet></router-outlet>
     </div>
 </div>

@@ -1,0 +1,15 @@
+<ng-template [ngIf]="message.type=='erreur'">
+    <div id="erreur">
+        <p>{{message.content}}</p>
+    </div>
+</ng-template>
+<ng-template [ngIf]="message.type=='info'">
+    <div id="info">
+        <p>{{message.content}}</p>
+    </div>
+</ng-template>
+<ng-template [ngIf]="message.type=='succes'">
+    <div id="succes">
+        <p>{{message.content}}</p>
+    </div>
+</ng-template>

@@ -1,0 +1,29 @@
+<div>
+    <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
+        <div>
+            <div class="ensemble">
+                <label>Nom:</label>
+                <input type="text" formControlName="nom">    
+            </div>
+            <div class="ensemble">
+                <label>Prénom:</label>
+                <input type="text" formControlName="prenom">
+            </div>
+        </div>
+        <div class="ensemble">
+            <label>Adresse:</label>
+            <input type="text" formControlName="adresse">
+        </div>
+        <div class="ensemble">
+            <label>Mail:</label>
+            <input type="text" formControlName="mail">
+        </div>
+        <div class="ensemble">
+            <label>Mot de passe:</label>
+            <input type="password" formControlName="mdp">
+        </div>
+        <div id="validation">
+            <button>Enregistrer</button>
+        </div>
+    </form>
+</div>

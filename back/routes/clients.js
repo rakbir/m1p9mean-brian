@@ -15,7 +15,7 @@ mongoClient.connect(url)
 	const collection=db.collection("utilisateurs") 
 	
 	clients.get('/search',
-				middlewares.adminOnly,
+				middlewares.responsableOnly,
 				function(req, res){
 		const curs=collection.find().toArray()
 		.then(results=>{
@@ -24,19 +24,12 @@ mongoClient.connect(url)
 		.catch(error=>console.error(error))
 	})
 
-	clients.post('/inscription', function(req, res){
-		//envoi mail de confirmation de création de compte
-		collection.insertOne(req.body)
-		res.send("inscription terminée")
-	})
-	
 	clients.get('/liste', function(req, res){
 		collection.find({type:"client"}).toArray()
 		.then(result=>{
-			console.log(result)
 			res.send(result)
 		})
-	})
+	})	
 })
 .catch(error=>console.error(error))
 

@@ -12,6 +12,17 @@ import { AffichageProfilComponent } from './components/affichage-profil/affichag
 import { ClientComponent } from './components/client/client.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ListePlatsComponent } from './components/liste-plats/liste-plats.component';
+import { PanierComponent } from './components/panier/panier.component';
+import { InscriptionClientComponent } from './components/inscription-client/inscription-client.component';
+import { VoirCommandesComponent } from './components/voir-commandes/voir-commandes.component';
+import { LivreurComponent } from './components/livreur/livreur.component';
+import { ResponsableComponent } from './components/responsable/responsable.component';
+import { ALivrerComponent } from './components/a-livrer/a-livrer.component';
+import { MailOnlyLoginComponent } from './components/mail-only-login/mail-only-login.component';
+import { RestaurantComponent } from './components/restaurant/restaurant.component';
+import { GestionPlatsComponent } from './components/gestion-plats/gestion-plats.component';
+import { CommandesEnCoursComponent } from './components/commandes-en-cours/commandes-en-cours.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +33,18 @@ import { ListePlatsComponent } from './components/liste-plats/liste-plats.compon
     AffichageProfilComponent,
     ClientComponent,
     FooterComponent,
-    ListePlatsComponent
+    ListePlatsComponent,
+    PanierComponent,
+    InscriptionClientComponent,
+    VoirCommandesComponent,
+    LivreurComponent,
+    ResponsableComponent,
+    ALivrerComponent,
+    MailOnlyLoginComponent,
+    RestaurantComponent,
+    GestionPlatsComponent,
+    CommandesEnCoursComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

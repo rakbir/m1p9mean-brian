@@ -1,0 +1,12 @@
+<h1>À livrer</h1>
+<button (click)="getCommandes()">Rafraîchir</button>
+<div>
+    <div *ngFor="let commande of commandes; let i=index">
+        <div>
+            <p *ngIf="commande.etat=='livré'">Livré</p>
+            <button *ngIf="commande.etat=='prêt'" (click)="livraison(i)">Livraison</button>
+        </div>
+        <p>{{commande.nombre}} "{{commande.plat.libelle}}" de chez {{commande.restaurant.nom}} </p>
+        <p>Client :{{commande.client.nom}} - Adresse: {{commande.client.adresse}}</p>
+    </div>
+</div>

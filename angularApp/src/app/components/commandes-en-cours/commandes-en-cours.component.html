@@ -1,0 +1,11 @@
+<h1>Commandes en cours</h1>
+<button (click)="getCommandes()">Rafraîchir</button>
+<div>
+    <div *ngFor="let commande of commandes; let i=index">
+        <p *ngIf="commande.etat!='en-cours'">Prête à livrer</p>
+        <button *ngIf="commande.etat=='en-cours'" (click)="prete(i)">Prête pour livraison</button>
+        <p>Plat: {{commande.plat.libelle}}, nombre: {{commande.plat.nombre}} </p>
+        <p>Client: {{commande.client.nom}} - {{commande.client.adresse}}</p>
+        <p>Date de la commande: {{commande.commande_date}}<p>
+    </div>
+</div>

@@ -1,12 +1,9 @@
 var express=require('express')
 var plats=express.Router();
-var bodyParser=require('body-parser')
 const mongoClient=require('mongodb').MongoClient
 var objectId=require('mongodb').ObjectId;
 const constants=require('../constants');
 const middlewares=require('../middlewares/middlewares')
-// plats.use(bodyParser.urlencoded({ extended: false }))
-// plats.use(bodyParser.json());
 
 
 mongoClient.connect(constants.url).then(client=>{
@@ -25,7 +22,6 @@ mongoClient.connect(constants.url).then(client=>{
 					res.send({status:0, message:"Contenu introuvable"})
 				}
 				result.plats=result.plats ? result.plats : [];
-				console.log(result)
 				res.send({status:1, data:result})
 			}) 
 			.catch(error=>{
@@ -33,8 +29,8 @@ mongoClient.connect(constants.url).then(client=>{
 			})
 	})
 	
-	plats.put('/nouveau', middlewares.checkSessionCookie, function(req, res){
-		var restaurant=new objectId(req.body.restaurant)
+	plats.put('/nouveau', middlewares.checkSession, function(req, res){
+		var restaurant=new objectId(req.body.restaurant_id)
 		delete req.body.restaurant;
 		var plat=req.body;
 		collection.findOneAndUpdate(

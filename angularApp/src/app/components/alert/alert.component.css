@@ -1,0 +1,19 @@
+#erreur{
+    background-color: firebrick;
+    color:white;
+    padding:0.1rem;
+    margin:0.5rem;
+    align-self: center;
+    text-align: center;
+    border-radius: 5%;
+}
+
+#succes{
+    background-color:forestgreen;
+    color:white;
+    padding:0.1rem;
+    margin:0.5rem;
+    align-self: center;
+    text-align: center;
+    border-radius: 10%;
+}

@@ -8,9 +8,16 @@ export const environment = {
 
 export const urls={
   login:"http://localhost:3000/utilisateurs/login",
-  user_session:"http://localhost:3000/utilisateurs/session",
+  mail_login:"http://localhost:3000/utilisateurs/mail-login",
+  user_session:"http://localhost:3000/utilisateurs/session-user",
   liste_restaurants:"http://localhost:3000/restaurants/liste",
-  carte_restaurant:"http://localhost:3000/plats/carte"  
+  carte_restaurant:"http://localhost:3000/plats/carte",
+  nouvelle_commande:'http://localhost:3000/commandes/nouveau',
+  inscription:'http://localhost:3000/utilisateurs/inscription',
+  en_cours:'http://localhost:3000/commandes/en-cours',
+  pret_pour_livraison:"http://localhost:3000/commandes/prete-pour-livraison",
+  a_livrer:"http://localhost:3000/commandes/a-livrer",
+  livraison:'http://localhost:3000/commandes/livraison'
 }
 
 /*
