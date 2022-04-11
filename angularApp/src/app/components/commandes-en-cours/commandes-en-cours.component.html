@@ -1,0 +1,30 @@
+<h1 class="text-center border-bottom pb-2">{{titre}} 
+    <span *ngIf="loading">
+        <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+    </span>
+</h1>
+<button class="mx-auto btn-dark btn-lg" (click)="getCommandes()">
+    <span *ngIf="loading">
+        <i  class="fa-solid fa-sync fa-spin"></i>
+    </span>
+    <span *ngIf="!loading"><i class="fa fa-refresh"></i></span>
+    <span class="pl-2">Rafraîchir</span>
+</button>
+<div>
+    <div *ngIf="commandes.length==0" class="pt-2 mt-2 alert alert-success text-center" role="alert">
+        Aucune commande à préparer pour l'instant
+    </div>
+    <div class="p-2 m-2" *ngFor="let commande of commandes; let i=index" id="commande">
+        <div>
+            <h4>{{commande.plat.libelle}} </h4>
+            <p><span>Quantité commandée: </span>{{commande.plat.nombre}}</p>
+            <p><span class="font-weight-bold">Commande du: </span> {{makeHumanReadable(commande.commande_date)}}</p>
+            <p><span class="font-weight-bold">Client: </span>{{commande.client.nom }}</p>
+            <p><span class="font-weight-bold">Adresse: </span>{{commande.client.adresse}}</p>
+        </div>
+        <div id="etat">
+            <h1><span class="badge badge-success" *ngIf="commande.etat=='prête'">Prête</span></h1>
+            <button class="btn btn-primary" *ngIf="commande.etat=='en-cours'" (click)="prete(i)">Signaler comme prête</button>
+        </div>
+    </div>
+</div>

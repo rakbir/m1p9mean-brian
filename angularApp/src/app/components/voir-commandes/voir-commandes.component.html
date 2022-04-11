@@ -1,0 +1,36 @@
+<h1 class="text-center border-bottom pb-2">{{titre}}
+    <span *ngIf="loading">
+        <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+    </span>
+</h1>
+
+<div class="mx-auto col-md-11 border-bottom">
+    <label>Du </label>            
+    <input class="debut" type="date" [(ngModel)]="dates.debut">
+    <label> au </label> 
+    <input class="fin" type="date" [(ngModel)]="dates.fin">   
+    <button (click)="findCommandes()"><i class="fa fa-search"></i>Afficher</button>
+</div>
+
+<div>
+    <h2>Commandes du {{dateDebut}} au {{dateFin}}</h2>
+    <div *ngFor="let commande of liste" class="border p-2 m-2">
+        <div>
+            <p><span class="font-weight-bold">Client: </span>{{commande.client.nom+' '+commande.client.prenom}}</p>
+            <p><span class="font-weight-bold">Plat: </span>{{commande.plat.libelle}}</p>
+            <p><span class="font-weight-bold">Restaurant: </span>{{commande.restaurant.nom}}</p>
+            <p><span class="font-weight-bold">Nombre: </span>{{commande.plat.nombre}} </p>
+            <p><span class="font-weight-bold">Date: </span> {{makeHumanReadable(commande.commande_date)}}</p>
+            <p><span *ngIf="commande.etat=='en-cours'" class="badge badge-warning">{{commande.etat}}</span></p>
+            <p><span *ngIf="commande.etat=='prêt'" class="badge badge-info">{{commande.etat}}</span>
+            <p><span *ngIf="commande.etat=='livré'" class="badge badge-success">{{commande.etat}}</span></p>
+            <p *ngIf="commande.date_livraison">{{makeHumanReadable(commande.date_livraison)}}</p>
+            <p><span class="font-weight-bold">total: </span>{{commande.total}} ariary</p>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-7 mx-auto text-center m-2">
+    <button class="btn btn-primary btn-sm" *ngIf="skip > 0" (click)="precedent()">Précedent</button>
+    <button class="btn btn-primary btn-sm" *ngIf="page!=nbpages" (click)="suivant()">Suivant</button>
+</div> 

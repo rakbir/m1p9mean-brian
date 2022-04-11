@@ -1,0 +1,14 @@
+<div class="m-2 border p-2 bg-light">
+    <ng-template [ngIf]="connected">
+        <p><i class="fa fa-user"></i> {{utilisateur.nom}}</p>
+        <button (click)="deconnexion()">
+            <span *ngIf="loading">
+                <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+            </span>
+            Se déconnecter
+        </button>
+    </ng-template>
+    <ng-template [ngIf]="!connected">
+        <p><a routerLink="login">Se connecter | S'inscrire</a></p>
+    </ng-template>
+</div>
