@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
+import { Utilisateur } from 'src/app/util/Utilisateur';
 
 @Component({
   selector: 'app-restaurant',
@@ -8,18 +9,19 @@ import { AppComponent } from 'src/app/app.component';
   styleUrls: ['./restaurant.component.css']
 })
 export class RestaurantComponent implements OnInit {
-  type="resto";
+  type="restaurant";
   utilisateur:any;
+
   connected=false;
+
   message={
     content:"",
     type:"erreur" //info , erreur, succès
   }
   liens=[
-    {libelle:'Voir les commandes en cours', cible:"restaurant/commandes", connect:true},
-    {libelle: 'Gestion des plats', cible:"", connect:true},
-    {libelle:"Recettes et bénéfices", cible:"", connect:true},
-    {libelle:"Déconnexion", cible:"", connect:true}
+    {libelle:'Voir les commandes en cours', cible:"/restaurant/commandes", connect:true},
+    {libelle: 'Gestion des plats', cible:"/restaurant/gestion-plats", connect:true},
+    {libelle:"Recettes et bénéfices", cible:"", connect:true}
   ]
   constructor(private app:AppComponent, private router:Router) { }
 
@@ -38,8 +40,14 @@ export class RestaurantComponent implements OnInit {
       }
     }, this.app.onError)
   }
-  removeUtilisateur(){
-    this.utilisateur=null;
+
+  removeUser(){
+    this.utilisateur={};
     this.connected=false;
   }
+  removeAndredirect(){
+    this.removeUser();
+    this.router.navigateByUrl('/restaurant/login')
+  }
+
 }

@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
-import { urls } from 'src/environments/environment';
 
 @Component({
   selector: 'app-client',
@@ -13,11 +12,11 @@ export class ClientComponent implements OnInit {
   utilisateur:any;
   connected=false;
   message={
-    content:"test",
-    type:"succes"
+    content:"",
+    type:""
   }
   liens=[
-    {libelle:"Déconnexion", cible:"", connect:true}
+    {libelle:"Les restaurants", cible:"/restaurants", connect:""}
   ]
   constructor(private app: AppComponent,private httpClient: HttpClient) {}
   
@@ -28,15 +27,17 @@ export class ClientComponent implements OnInit {
         case 0:
           break;
         case 1:
-          this.utilisateur=reponse.data;
+          this.utilisateur=reponse.data.nom;
           this.connected=true;
           break;
       }
-    }, this.app.onError)
+    }, (err:any)=>{
+      alert('Il y eu une erreur lors de la connexion au serveur');
+    })
   }
 
-  removeUtilisateur(){
-    this.utilisateur=null;
+  removeUser(){
+    this.utilisateur={};
     this.connected=false;
   }
 }

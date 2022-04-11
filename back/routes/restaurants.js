@@ -1,18 +1,29 @@
 var express=require('express')
 var restaurants=express.Router();
-
+var objectId=require('mongodb').ObjectId;
 const mongoClient=require('mongodb').MongoClient
 const constants=require('../constants');
 
 mongoClient.connect(constants.url)
 .then(client=>{
 	const db=client.db(constants.db)
-	const collection=db.collection("utilisateurs")	
-	
+	const collection=db.collection("utilisateurs")
+	restaurants.get('/info/:restaurant', function(req, res){
+		var restaurant=new objectId(req.params.restaurant);	
+		collection.findOne({_id:restaurant, type:"restaurant"})
+		.then(result=>{
+			if(result!=null){
+				res.send({status:1, data:result});
+			}else{
+				res.send({status:0, message:"L'identifiant ne correspond à aucun restaurant"})
+			}
+		})
+	})
+
 	restaurants.get('/liste/:limit/:skip', function(req, res){
 		var limite=parseInt(req.params.limit);
 		var skip=parseInt(req.params.skip);
-		query={type:"resto"};
+		query={type:"restaurant"};
 		collection.countDocuments(query).then(compte=>{
 			collection.find(query)
 			.project({type:1, nom:1,  mail:1, adresse:1, description:1})

@@ -1,0 +1,38 @@
+<div>
+    <h1 class="text-center border-bottom pb-2">{{titre}}</h1>
+    <div class="col-md-11 mx-auto rounded border shadow p-4 m-4" id="login">
+        <div class="champ">
+            <label> * Nom du restaurant:</label>
+            <input type="text" [(ngModel)]="formulaire.nom" required>
+        </div>
+        <div class="champ">
+            <label>* Adresse:</label>
+            <input type="text" [(ngModel)]="formulaire.adresse" required>
+        </div>
+        <div class="champ">
+            <label>* Mail:</label>
+            <input type="text" id="mail" [(ngModel)]="formulaire.mail" required>
+        </div>
+        <div class="champ">
+            <label>Description / spécialités:</label>
+            <input type="text" [(ngModel)]="formulaire.description">
+        </div>
+        <div class="champ">
+            <label>* Mot de passe:</label>
+            <input type="password" id="mdp" [(ngModel)]="formulaire.mdp" required>
+        </div>
+        <div class="col-md text-center">
+            <button class="btn btn-primary mx-auto" type="button" (click)="envoi()">
+                <span *ngIf="loading">
+                    <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+                </span>
+                Enregistrer
+            </button>
+        </div>
+    <div class="col-md-2 mx-auto text-center">
+        <p>ou</p>
+        <button class="btn btn-primary mx-auto" (click)="loginPage()">Se connecter</button>
+    </div>
+</div>
+    
+</div>

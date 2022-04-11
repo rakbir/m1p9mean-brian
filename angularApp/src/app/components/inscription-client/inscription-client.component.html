@@ -1,29 +1,37 @@
 <div>
-    <form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
-        <div>
-            <div class="ensemble">
-                <label>Nom:</label>
-                <input type="text" formControlName="nom">    
-            </div>
-            <div class="ensemble">
-                <label>Prénom:</label>
-                <input type="text" formControlName="prenom">
-            </div>
+    <h1 class="text-center border-bottom pb-2">{{titre}}</h1>
+    <div class="col-md-11 mx-auto rounded border shadow p-4 m-4">
+        <div class="champ">
+            <label>* Nom:</label>
+            <input type="text" [(ngModel)]="formulaire.nom" name="nom" required>    
         </div>
-        <div class="ensemble">
-            <label>Adresse:</label>
-            <input type="text" formControlName="adresse">
+        <div class="champ">
+            <label>Prénom:</label>
+            <input type="text" [(ngModel)]="formulaire.prenom" name="prenom">
         </div>
-        <div class="ensemble">
-            <label>Mail:</label>
-            <input type="text" formControlName="mail">
+        <div class="champ">
+            <label>* Adresse:</label>
+            <input type="text" [(ngModel)]="formulaire.adresse" name="adresse">
         </div>
-        <div class="ensemble">
-            <label>Mot de passe:</label>
-            <input type="password" formControlName="mdp">
+        <div class="champ">
+            <label>* Mail:</label>
+            <input type="text" [(ngModel)]="formulaire.mail" name="mail">
         </div>
-        <div id="validation">
-            <button>Enregistrer</button>
+        <div class="champ">
+            <label>* Mot de passe:</label>
+            <input type="password" [(ngModel)]="formulaire.mdp" name="mdp">
         </div>
-    </form>
+        <div class="col-md text-center">
+            <button class="btn btn-primary mx-auto" (click)="envoi()">
+                <span *ngIf="loading">
+                    <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+                </span>
+                Enregistrer
+            </button>
+        </div>
+        <div class="col-md-2 mx-auto text-center">
+            <p>ou</p>
+            <button class="btn btn-primary mx-auto" (click)="loginPage()">Se connecter</button>
+        </div>
+    </div>
 </div>

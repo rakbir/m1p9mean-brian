@@ -13,6 +13,7 @@ export class AppComponent implements OnInit{
     msg:"",
     type:""
   }
+  listes=[{nom:"salut"}, {nom:"banane"}]
 
   onError=()=>{
     alert('Il y a eu un problème lors de la connexion au serveur')

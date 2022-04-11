@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 import { urls } from 'src/environments/environment';
 
 @Component({
@@ -9,15 +10,17 @@ import { urls } from 'src/environments/environment';
 })
 export class ListeRestosComponent implements OnInit {
   @Output() isConnected=new EventEmitter<any>();
-  
+  loading=false;
+  titre="Liste des restaurants"
   affichage=6;
   skip=0;
   restaurants: any;
   total=0;
   page=1;
   nbpages=0;
+  recherche="";
   
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient, private app:AppComponent) { }
 
   changeState(){
     this.isConnected.emit();
@@ -40,11 +43,8 @@ export class ListeRestosComponent implements OnInit {
   }
 
   getList():void{
+    this.loading=true;
     this.skip=this.affichage*(this.page-1);
-    const onError=()=>{
-      alert('Il y a eu un problème au niveau de la connexion au serveur, veuillez réessayer');
-    }
-    
     this.httpClient.get(urls.liste_restaurants+"/"+this.affichage+"/"+this.skip)
     .subscribe((fromServer:any)=>{
       switch(fromServer.status){
@@ -56,7 +56,11 @@ export class ListeRestosComponent implements OnInit {
           this.nbpages=(this.total%this.affichage)==0 ? (this.total/this.affichage) : Math.floor(this.total/this.affichage)+1;
           break;
       }
-    },onError);
+      this.loading=false;
+    },(err:any)=>{
+      alert('Il y eu une erreur lors de la connexion au serveur');
+      this.loading=false;
+    })
   }
 
   ngOnInit(): void {

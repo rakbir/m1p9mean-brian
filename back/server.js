@@ -10,6 +10,7 @@ var restaurants=require('./routes/restaurants');
 var commandes=require('./routes/commandes');
 var utilisateurs=require('./routes/utilisateurs');
 var plats=require('./routes/plats');
+var livreurs=require('./routes/livreurs');
 
 app.use(cors({origin:true, credentials:true}))
 app.use(bodyparser.urlencoded({extended:true}))
@@ -22,6 +23,7 @@ app.use('/clients', clients);
 app.use('/restaurants', restaurants);
 app.use('/commandes', commandes);
 app.use('/utilisateurs', utilisateurs);
+app.use('/livreurs', livreurs);
 app.use('/plats', plats);
 
 app.listen(3000);

@@ -12,19 +12,25 @@ mongoClient.connect(constants.url).then(client=>{
 	commandes.get('/voir', middlewares.checkSession, middlewares.responsableOnly, function(req, res){
 		var debut=req.query.debut+'T00:00:00.000+00:00';
 		var fin=req.query.fin+'T23:59:59.999+00:00';
-		console.log(debut, fin);
-		const curs=collection.find(
-			{
-				commande_date:{
+		var skip=parseInt(req.query.skip);
+		var limite=parseInt(req.query.limit);
+		var query={
+			commande_date:{
 					$gte: new Date(debut),
 					$lt: new Date(fin)
 				}
-			}).toArray()
-		.then(results=>{
-			console.log(results)
-			res.send({status:1, data:results });
+		}
+		collection.countDocuments(query).then(compte=>{
+			collection.find(query)
+			.limit(limite)
+			.skip(skip)
+			.toArray()
+			.then(liste=>{
+				res.send({status:1, data:{commandes:liste, total:compte}})
+			}, err=>{
+				console.log(err)
+			})
 		})
-		.catch(error=>console.error(error))
 	})
 	
 	commandes.post('/nouveau', middlewares.checkSession, middlewares.clientOnly, function(req, res){
@@ -34,6 +40,7 @@ mongoClient.connect(constants.url).then(client=>{
 			client:{ 
 				id: req.session.user._id, 
 				nom:req.session.user.nom,
+				prenom:req.session.user.prenom,
 				adresse:req.session.user.adresse
 			},
 			commande_date:new Date(),
@@ -82,7 +89,7 @@ mongoClient.connect(constants.url).then(client=>{
 		})
 	})
 	commandes.get('/a-livrer', middlewares.checkSession, middlewares.livreurOnly, function(req, res){
-		var projection={"plat.prix":0, total:0, commande_date:0};
+		var projection={"plat.prix":0, total:0};
 		var query={etat:"prêt"}
 		collection.find(query)
 		.project(projection)

@@ -1,0 +1,5 @@
+<div class="p-3">
+    <p *ngFor="let lien of liens"> 
+        <a *ngIf="lien.connect==connected || lien.connect=='' " routerLink="{{lien.cible}}">{{lien.libelle}}</a>
+    </p>
+</div>

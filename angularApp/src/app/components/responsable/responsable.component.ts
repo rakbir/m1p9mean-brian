@@ -15,13 +15,13 @@ export class ResponsableComponent implements OnInit {
     content:"",
     type:"erreur" //info , erreur, succès
   }
+  inscription="responsable/inscription"
 
   liens=[
-    {libelle:'Les commandes', cible:"", connect:true},
-    {libelle: 'Gestion des livreurs', cible:"", connect:true},
-    {libelle:"Gestion des restos", cible:"", connect:true},
-    {libelle:"Les bénéfices", cible:"", connect:true},
-    {libelle:"Déconnexion", cible:"", connect:true}
+    {libelle:'Les commandes', cible:"/restaurant/voir-commandes", connect:true},
+    // {libelle: 'Gestion des livreurs', cible:"", connect:true},
+    // {libelle:"Gestion des restos", cible:"", connect:true},
+    // {libelle:"Les bénéfices", cible:"", connect:true},
   ]
 
   constructor(private app:AppComponent, private router:Router) { }
@@ -42,9 +42,14 @@ export class ResponsableComponent implements OnInit {
     }, this.app.onError)
   }
 
-  removeUtilisateur(){
-    this.utilisateur=null;
+  removeUser(){
+    this.utilisateur={};
     this.connected=false;
+  }
+
+  removeAndredirect(){
+    this.removeUser();
+    this.router.navigateByUrl('/responsable/login')
   }
 
 }

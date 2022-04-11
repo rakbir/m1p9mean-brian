@@ -11,13 +11,20 @@ export const urls={
   mail_login:"http://localhost:3000/utilisateurs/mail-login",
   user_session:"http://localhost:3000/utilisateurs/session-user",
   liste_restaurants:"http://localhost:3000/restaurants/liste",
+  info_restaurant:"http://localhost:3000/restaurants/info",
   carte_restaurant:"http://localhost:3000/plats/carte",
   nouvelle_commande:'http://localhost:3000/commandes/nouveau',
   inscription:'http://localhost:3000/utilisateurs/inscription',
   en_cours:'http://localhost:3000/commandes/en-cours',
   pret_pour_livraison:"http://localhost:3000/commandes/prete-pour-livraison",
   a_livrer:"http://localhost:3000/commandes/a-livrer",
-  livraison:'http://localhost:3000/commandes/livraison'
+  livraison:'http://localhost:3000/commandes/livraison',
+  liste_plats:"http://localhost:3000/plats/liste",
+  nouveau_plat:"http://localhost:3000/plats/nouveau",
+  supprimer_plat:'http://localhost:3000/plats/supprimer',
+  liste_commandes:"http://localhost:3000/commandes/voir",
+  liste_livreurs:'http://localhost:3000/livreurs/liste',
+  deconnexion:"http://localhost:3000/utilisateurs/deconnexion"
 }
 
 /*

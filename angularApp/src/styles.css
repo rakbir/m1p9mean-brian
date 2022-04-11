@@ -1,25 +1,8 @@
-*{
-    font-family:Calibri;
-    box-sizing: border-box;
-    scrollbar-width:thin;
-	scroll-behavior: smooth;
-}
-
 .champ{
     display:grid;
-    grid-template-columns:35% 65%;
+    grid-template-columns:2fr 7fr;
     padding:1.5%;
     width:85%
-}
-
-label{
-    text-align: end;
-}
-
-input{
-    padding-left: 2%;
-    margin-left:2%;
-    border-radius: 5%;
 }
 
 .validation{
@@ -29,26 +12,52 @@ input{
     flex-direction: row-reverse;
 }
 
-#banniere{
-    min-height:10vh;
-    border: solid 1px red
+label{
+    text-align: end;
+}
+input{
+    padding-left: 2%;
+    margin-left:2%;
+    border-radius: 5%;
 }
 
 #milieu{
     display:grid;
-    grid-template-columns: 2fr 6fr 1fr;
+    min-height:calc(100vh - 10vh - 10vh);
+    grid-template-columns:2fr 5fr;
+}
+
+
+/* *{
+    font-family:Calibri;
+    box-sizing: border-box;
+    scrollbar-width:thin;
+	scroll-behavior: smooth;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+
+
+
+ #banniere{
+    min-height:10vh;
+}
+
+#milieu{
+    display:grid;
+    grid-template-columns: 2fr 6fr;
     height: calc(100vh - 10vh - 10vh);
     margin-top:0.5rem;
     margin-bottom:0.5rem
 }
- 
-#gauche{
-    border: solid 1px rgb(118, 78, 78);
-}
 
 #changeant{
     margin-left:0.5rem;
-    /* border: solid 1px black; */
     overflow-y:scroll;
 }
 
@@ -56,3 +65,4 @@ input{
     color:white;
     background-color:green   
 }
+*/

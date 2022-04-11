@@ -5,12 +5,12 @@ import { ClientComponent } from './components/client/client.component';
 import { CommandesEnCoursComponent } from './components/commandes-en-cours/commandes-en-cours.component';
 import { GestionPlatsComponent } from './components/gestion-plats/gestion-plats.component';
 import { InscriptionClientComponent } from './components/inscription-client/inscription-client.component';
+import { InscriptionLivreurComponent } from './components/inscription-livreur/inscription-livreur.component';
+import { InscriptionRestaurantComponent } from './components/inscription-restaurant/inscription-restaurant.component';
 import { ListePlatsComponent } from './components/liste-plats/liste-plats.component';
 import { ListeRestosComponent } from './components/liste-restos/liste-restos.component';
 import { LivreurComponent } from './components/livreur/livreur.component';
 import { LoginComponent } from './components/login/login.component';
-import { MailOnlyLoginComponent } from './components/mail-only-login/mail-only-login.component';
-import { PanierComponent } from './components/panier/panier.component';
 import { ResponsableComponent } from './components/responsable/responsable.component';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { VoirCommandesComponent } from './components/voir-commandes/voir-commandes.component';
@@ -33,10 +33,6 @@ const routes: Routes = [
         component:ListePlatsComponent
       },
       {
-        path:"commandes/panier",
-        component:PanierComponent
-      },
-      {
         path:"commandes/voir",
         component:VoirCommandesComponent
       },
@@ -55,9 +51,22 @@ const routes: Routes = [
     component:ResponsableComponent,
     children:[
       {
+        path:"",
+        component:VoirCommandesComponent
+      },
+      {
+        path:"voir-commandes",
+        component:VoirCommandesComponent
+      },
+      {
         path:"login",
-        component:MailOnlyLoginComponent
-      }
+        component:LoginComponent
+      },
+      {
+        path:"inscription",
+        component:InscriptionLivreurComponent
+      },
+      
     ]
   },
   {
@@ -74,7 +83,11 @@ const routes: Routes = [
       },
       {
         path:"login",
-        component:MailOnlyLoginComponent
+        component:LoginComponent
+      },
+      {
+        path:"inscription",
+        component:InscriptionRestaurantComponent
       },
       {
         path:"commandes",
@@ -91,8 +104,16 @@ const routes: Routes = [
         component:ALivrerComponent
       },
       {
+        path:"a-livrer",
+        component:ALivrerComponent
+      },
+      {
         path:"login",
-        component:MailOnlyLoginComponent
+        component:LoginComponent
+      },
+      {
+        path:"inscription",
+        component:InscriptionLivreurComponent
       }
     ]
   }

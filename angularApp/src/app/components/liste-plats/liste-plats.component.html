@@ -1,14 +1,26 @@
-<h1>{{restaurant}}</h1>
+<h1 class="text-center border-bottom p-2">{{restaurant.nom}} - La carte
+    <span *ngIf="loading">
+        <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+    </span>
+</h1>
 <div id="plats">
-    <div id="plat" *ngFor="let plat of plats; let i=index">
+    <div *ngIf="plats.length==0" class="pt-2 mt-2 alert alert-info text-center" role="alert">
+        Aucun plat à afficher
+    </div>
+    <div class="col-md-10 border p-2 m-2 shadow-sm mx-auto" style="display:grid; grid-template-columns: 1fr 1fr;" *ngFor="let plat of plats; let i=index">
         <div>
-            <p>{{plat.libelle}}</p>
+            <h3>{{plat.libelle}}</h3>
+            <p><span class="font-weight-bold">prix:</span> {{plat.prix}}</p>
             <p>{{plat.description}}</p>
-            <p>{{plat.prix}} ariary</p>    
         </div>
-        <div class="inline">
+        <div>
             <input type="number" id="_{{i}}" value="1">
-            <button class="bvert" (click)="commander(i)">ajouter</button>
+            <button class="btn btn-primary ml-1" (click)="commander(i)">
+                <span *ngIf="loading">
+                    <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+                </span>
+                Commander
+            </button>
         </div>
     </div>
 </div>

@@ -1,0 +1,17 @@
+#banniere{
+    display:grid;
+    grid-template-columns: 9fr 3fr;
+    min-height:10vh;
+    background-color: #563d7c;
+    color:white;
+}
+
+#profil{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    padding:0.5rem;
+}
+#changeant{
+    min-height:80vh;
+    
+}

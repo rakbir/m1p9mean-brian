@@ -12,8 +12,8 @@ mongoClient.connect(constants.url)
 	utilisateurs.get("/session-user/:profil", function(req, res){
 		var profil=req.params.profil;
 		if(req.session.user && req.session.user.type==profil){
-			var user=req.session.user;
-			res.send({status:1, data:{user}}) 
+			var user=req.session.user; 
+			res.send({status:1, data:user}) 
 		}else{
 			res.send({status:0, message:"Aucune session utilisateur"});
 		}
@@ -25,36 +25,23 @@ mongoClient.connect(constants.url)
 		req.body.mdp=bcrypt.hashSync(req.body.mdp, 8);
 		collection.insertOne(req.body)
 		.then(result=>{
-			if(!result.aknowledge){
+			if(!result.acknowledged){
 				stat=0;
-				msg="Il y eu un problème"
+				msg="Il y a eu un problème"
 			}
 		});
 		res.send({status:stat, message:msg})
 	}) //OK
 	
-	utilisateurs.post('/mail-login', function(req, res){
-		collection.findOne(req.body)
-		.then(result=>{
-			if(result!=null){
-				req.session.user=result;
-				console.log(req.session)
-				res.send({status:1, data:{user:result}})
-			}else{
-				res.send({status:0, message:"Le mail ne correspond à auxun compte"})
-			}
-		})
-	})
-	
 	utilisateurs.post('/login', function(req, res){
 		var stat=1; 
-		collection.findOne({mail:req.body.mail, type:"client"})
+		collection.findOne({mail:req.body.mail, type:req.body.type})
 		.then(result=>{
 			if(result!=null){
 				if(bcrypt.compareSync(req.body.mdp, result.mdp)){
 					delete result.mdp;
 					req.session.user=result;
-					res.send({status:1, data:{user:result}})
+					res.send({status:1, data:result})
 				}else{
 					res.send({message:"La combinaison des identifiants ne correspond à aucun compte", status:0})
 				}
@@ -65,9 +52,10 @@ mongoClient.connect(constants.url)
 	});
 	
 	
-	// utilisateurs.get('/deconnexion', function(req, res){
-			
-	// });
+	utilisateurs.get('/deconnexion', function(req, res){
+		req.session.destroy();
+		res.send({status:1, message:'Session terminée'});
+	});
 })
 .catch(error=>console.error(error))
 

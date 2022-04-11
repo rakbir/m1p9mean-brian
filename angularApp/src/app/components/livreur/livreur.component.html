@@ -1,7 +1,10 @@
 <div id="banniere">
-    <div>E-kaly LIVREUR</div>
-    <div><p>Profil</p><button>Déconnexion</button></div>
+    <div class="font-weight-bold p-2">E-kaly LIVREUR</div>
+    <div *ngIf="connected" id="profil">
+        <h4><i class="fa fa-user"></i>{{utilisateur.nom}}</h4>
+        <button (click)="deconnexion()">Déconnexion</button>
+    </div>
 </div>
-<div>
+<div id="changeant">
     <router-outlet></router-outlet>
 </div>

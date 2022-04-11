@@ -10,16 +10,20 @@ import { urls } from 'src/environments/environment';
   styleUrls: ['./liste-plats.component.css']
 })
 export class ListePlatsComponent implements OnInit {
+  loading=true;
   restaurant:any;
   plats:any;
   restaurant_id="";
   constructor(private route:ActivatedRoute,
               private httpClient: HttpClient,
-              private app:AppComponent) { }
+              private app:AppComponent) {
+  this.restaurant={};
+  this.plats=[];
+              }
   
   commander(index:any){
     var plat={
-      restaurant:{ nom : this.restaurant, id: this.restaurant_id},
+      restaurant:{ nom : this.restaurant.nom, id: this.restaurant_id},
       libelle:this.plats[index].libelle,
       prix:this.plats[index].prix,
       nombre:0
@@ -33,30 +37,59 @@ export class ListePlatsComponent implements OnInit {
         case 0:
           break;
         case 1:
-          
+            alert("Commande enregistrée")
           break;
+        case 2:
+          alert("Veuillez vous connecter pour commander s'il vous plaît");
       }
-    }, this.app.onError);
+    }, (err:any)=>{
+      alert('Il y eu une erreur lors de la connexion au serveur');
+      this.loading=false;
+    })
+  }
+
+  findRestaurant(){
+    this.loading=true;
+    this.httpClient.get(urls.info_restaurant+'/'+this.restaurant_id, {withCredentials:true})
+    .subscribe((reponse:any)=>{
+        switch(reponse.status){
+          case 0:
+            alert(reponse.message);
+            break;
+          case 1:
+            this.restaurant=reponse.data;
+            break;
+        }
+      this.loading=false;
+    }, (err:any)=>{
+      alert('Il y eu une erreur lors de la connexion au serveur');
+      this.loading=false;
+    })
   }
 
   findPlats(){
-    this.httpClient.get(urls.carte_restaurant+'/'+this.restaurant_id)
+    this.loading=true;
+    this.httpClient.get(urls.carte_restaurant+'/'+this.restaurant_id, {withCredentials:true})
     .subscribe((reponse:any)=>{
       switch (reponse.status){
         case 0:
           break;
         case 1:
-          this.restaurant=reponse.data.nom;
-          this.plats=reponse.data.plats;
+          this.plats=reponse.data;
           break;
       }
-    }, this.app.onError);
+      this.loading=false;
+    }, (err:any)=>{
+      alert('Il y eu une erreur lors de la connexion au serveur');
+      this.loading=false;
+    })
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
        this.restaurant_id = params['restaurant'];
     });
+    this.findRestaurant();
     this.findPlats();
   }
 }

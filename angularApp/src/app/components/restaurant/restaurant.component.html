@@ -1,14 +1,14 @@
-<div id="banniere">
-    E-kaly RESTAURANT
+<div id="banniere" class="shadow mb-2">
+    <div class="font-weight-bold p-2">E-kaly RESTAURANT</div>
 </div>
 <div id="milieu">
-    <div id="gauche">
-        <div id="profil">
-            <app-affichage-profil></app-affichage-profil>
+    <div>
+        <app-affichage-profil [connected]="connected" [utilisateur]="utilisateur" ></app-affichage-profil>
+        <div id="liens">
+            <app-liens [connected]="connected" [liens]="liens"></app-liens>
         </div>
-        <div id="liens">Liens</div>
     </div>
-    <div id="changeant">
+    <div class="border-left pl-2">
         <router-outlet></router-outlet>
     </div>
 </div>
