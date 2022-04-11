@@ -26,5 +26,9 @@ app.use('/utilisateurs', utilisateurs);
 app.use('/livreurs', livreurs);
 app.use('/plats', plats);
 
+app.get('/', function(req, res){
+	res.send('Server Mean')
+})
+
 app.listen(3000);
 console.log("server démarré sur le port 3000")	
