@@ -27,7 +27,7 @@ app.use('/livreurs', livreurs);
 app.use('/plats', plats);
 
 app.get('/', function(req, res){
-	res.send('Server Mean')
+	res.send('API Mean')
 })
 
 app.get('/say-hello', function(req, res){
