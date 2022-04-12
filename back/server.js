@@ -30,5 +30,5 @@ app.get('/', function(req, res){
 	res.send('Server Mean')
 })
 
-app.listen(3000);
-console.log("server démarré sur le port 3000")	
+app.listen(process.env.PORT || 3000, 
+	() => console.log("Server démarré"));
