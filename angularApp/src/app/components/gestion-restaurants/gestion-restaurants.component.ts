@@ -58,7 +58,7 @@ export class GestionRestaurantsComponent implements OnInit {
   }
 
  supprimer(index:any){
-  this.http.get(urls.supprimer_liveur+'/'+this.restaurants[index]._id, {withCredentials:true})
+  this.http.get(urls.supprimer_restaurant+'/'+this.restaurants[index]._id, {withCredentials:true})
   .subscribe((reponse:any)=>{
     alert(reponse.message);
     switch(reponse.status){
