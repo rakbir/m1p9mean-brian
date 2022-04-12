@@ -1,0 +1,40 @@
+h1{
+    padding-left:1rem 
+}
+.restaurant{
+    padding:0.5rem;
+    border: solid 1px green 
+}
+
+.restaurant:hover{
+    border: solid 2px green;
+}
+
+#liste{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:1fr 1fr;
+
+   /*flex-wrap: wrap;
+   gap: 10px;
+  gap: 10px 20px; /* row-gap column gap */
+    row-gap: 15px;
+    column-gap: 10px;
+    padding:0.5rem 
+}
+
+#entete{
+    border-bottom-style:inset;
+    display: grid;
+    grid-template-columns: 80% 10%;
+}
+
+p{
+    margin:0;
+    font-size:small
+}
+
+#contenu{
+    display: grid;
+    grid-template-columns: 80% 10%;
+}

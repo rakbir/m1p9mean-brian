@@ -1,0 +1,24 @@
+<h1 class="text-center border-bottom pb-2">{{titre}}
+    <span *ngIf="loading">
+        <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+    </span>
+</h1>
+<div id="liste">
+    <div class="restaurant" *ngFor="let restaurant of restaurants">
+        <div id="entete">
+            <h4>{{restaurant.nom}}</h4>
+        </div>
+        <div id="renseignements">
+            <p><span class="font-weight-bold">Adresse:</span> {{ restaurant.adresse }}</p>
+            <p><span class="font-weight-bold">Contacts:</span> {{ restaurant.mail}}</p>
+            <p class="font-italic"> {{restaurant.description}}</p>  
+        </div>
+        <div class="validation">
+            <a routerLink="/restaurants/{{ restaurant._id }}/carte">Voir la carte</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-7 mx-auto text-center m-2">
+    <button class="btn btn-primary btn-sm" *ngIf="skip > 0" (click)="precedent()">Précedent</button>
+    <button class="btn btn-primary btn-sm" *ngIf="page!=nbpages" (click)="suivant()">Suivant</button>
+</div> 

@@ -1,0 +1,15 @@
+#plat{
+    display:flex;
+    flex-direction: row;
+}
+
+#plat>*{
+    border:solid 1px black;
+}
+input{
+    width:50px
+}
+.inline{
+    display:flex;
+    flex-direction:row
+}
