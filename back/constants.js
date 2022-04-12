@@ -1,5 +1,5 @@
 module.exports={
-	url:"mongodb+srv://ekaly:H6jMiXRUvSkU9tV7@cluster0.a6ng3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+	url:process.env.MONGODB_URI,
 	db:"meandb",
 	secret:"kaizakaiza"
 }
