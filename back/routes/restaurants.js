@@ -3,6 +3,7 @@ var restaurants=express.Router();
 var objectId=require('mongodb').ObjectId;
 const mongoClient=require('mongodb').MongoClient
 const constants=require('../constants');
+const middlewares=require('../middlewares/middlewares')
 
 mongoClient.connect(constants.url)
 .then(client=>{
@@ -52,6 +53,19 @@ mongoClient.connect(constants.url)
 			res.send(results)
 		})
 	})
+	
+	restaurants.get('/suppression/:id_restaurant', middlewares.checkSession, middlewares.responsableOnly, function(req,res){
+		var stat=1; var msg="Modifications enregistrées";
+		var restaurant=new objectId(req.params.id_restaurant);
+		collection.deleteOne({_id: restaurant, type:"restaurant"})
+		.then(result=>{
+			if(!result.acknowledged && !deleteCount==1){
+				stat=0; msg="Il semblerait que le compte soit introuvable";
+			}
+			res.send({status:stat, message:msg})
+		})
+		.catch(error=>console.error(error))
+	}) //ok
 })
 .catch(error=>{
 	console.error(error)
