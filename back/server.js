@@ -30,5 +30,9 @@ app.get('/', function(req, res){
 	res.send('Server Mean')
 })
 
+app.get('/say-hello', function(req, res){
+	res.send('Say hello');
+})
+
 app.listen(process.env.PORT || 3000, 
 	() => console.log("Server démarré"));
