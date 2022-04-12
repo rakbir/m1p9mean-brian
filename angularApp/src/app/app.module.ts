@@ -19,7 +19,7 @@ import { ALivrerComponent } from './components/a-livrer/a-livrer.component';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { GestionPlatsComponent } from './components/gestion-plats/gestion-plats.component';
 import { CommandesEnCoursComponent } from './components/commandes-en-cours/commandes-en-cours.component';
-import { ListeLivreursComponent } from './liste-livreurs/liste-livreurs.component';
+import { ListeLivreursComponent } from './components/liste-livreurs/liste-livreurs.component';
 import { InscriptionLivreurComponent } from './components/inscription-livreur/inscription-livreur.component';
 import { InscriptionRestaurantComponent } from './components/inscription-restaurant/inscription-restaurant.component';
 import { LiensComponent } from './components/liens/liens.component';
