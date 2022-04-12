@@ -3,7 +3,7 @@
         <i class="fa-solid fa-spinner fa-spin-pulse"></i>
     </span>
 </h1>
-<button class="mx-auto btn-dark btn-sm" (click)="getLivreurs()">
+<button class="mx-auto btn-dark btn-sm" (click)="getRestaurants()">
     <span *ngIf="loading">
         <i  class="fa-solid fa-sync fa-spin"></i>
     </span>
@@ -25,5 +25,5 @@
 </div>
 <div class="col-md-7 mx-auto text-center m-2">
     <button class="btn btn-primary btn-sm" *ngIf="skip > 0" (click)="precedent()">Précedent</button>
-    <button class="btn btn-primary btn-sm" *ngIf="page!=nbpages" (click)="suivant()">Suivant</button>
+    <button class="btn btn-primary btn-sm" *ngIf="page!=nbPages" (click)="suivant()">Suivant</button>
 </div> 
