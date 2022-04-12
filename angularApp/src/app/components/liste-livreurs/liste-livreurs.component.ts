@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { urls } from 'src/environments/environment';
-import { RestaurantComponent } from '../restaurant/restaurant.component';
 import { ResponsableComponent } from '../responsable/responsable.component';
 
 @Component({
@@ -40,7 +39,6 @@ export class ListeLivreursComponent implements OnInit {
      this.skip=this.affichage*(this.page-1);
      this.http.get(urls.liste_livreurs+'/'+this.affichage+'/'+this.skip, {withCredentials:true})
      .subscribe((reponse:any)=>{
-        alert(reponse.message);
         switch(reponse.status){
           case 0:
             break;
@@ -50,6 +48,7 @@ export class ListeLivreursComponent implements OnInit {
             this.nbPages=(this.total%this.affichage)==0 ? (this.total/this.affichage) : Math.floor(this.total/this.affichage)+1;
             break;
           case 2:
+            alert(reponse.message);
             this.responsable.removeAndredirect()
             break;            
         }
@@ -68,11 +67,13 @@ export class ListeLivreursComponent implements OnInit {
         case 0:
           break;
         case 1:
+          alert(reponse.message);
           this.livreurs.splice(index);
           this.total--;
           this.nbPages=(this.total%this.affichage)==0 ? (this.total/this.affichage) : Math.floor(this.total/this.affichage)+1;
           break;
         case 2:
+          alert(reponse.message);
           this.responsable.removeAndredirect()
           break;            
       }
@@ -84,6 +85,7 @@ export class ListeLivreursComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getLivreurs()
   }
 
 }
