@@ -41,7 +41,7 @@ export class GestionRestaurantsComponent implements OnInit {
          case 0:
            break;
          case 1:
-           this.restaurants=reponse.data.livreurs;
+           this.restaurants=reponse.data.restaurants;
            this.total=reponse.data.total;
            this.nbPages=(this.total%this.affichage)==0 ? (this.total/this.affichage) : Math.floor(this.total/this.affichage)+1;
            break;
