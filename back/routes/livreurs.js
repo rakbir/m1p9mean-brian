@@ -44,7 +44,7 @@ mongoClient.connect(constants.url)
 		var livreur=new objectId(req.params.id_livreur);
 		collection.deleteOne({_id: livreur, type:"livreur"})
 		.then(result=>{
-			if(!result.acknowledged && !deleteCount==1){
+			if(result.acknowledged && !result.deletedCount==1){
 				stat=0; msg="Il semblerait que le compte soit introuvable";
 			}
 			res.send({status:stat, message:msg})

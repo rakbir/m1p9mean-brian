@@ -50,7 +50,7 @@ mongoClient.connect(constants.url).then(client=>{
 		var resto_id=req.session.user._id;
 		collection.deleteOne({_id: plat, "restaurant.id": resto_id})
 		.then(result=>{
-			if(!result.acknowledged && !deleteCount==1){
+			if(result.acknowledged && !result.deletedCount==1){
 				stat=0; msg="Il y a eu une erreur";
 			}
 			res.send({status:stat, message:msg})

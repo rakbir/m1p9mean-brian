@@ -54,12 +54,13 @@ mongoClient.connect(constants.url)
 		})
 	})
 	
-	restaurants.get('/suppression/:id_restaurant', middlewares.checkSession, middlewares.responsableOnly, function(req,res){
+	restaurants.get('/suppression/:id_restaurant', function(req,res){
 		var stat=1; var msg="Modifications enregistrées";
 		var restaurant=new objectId(req.params.id_restaurant);
 		collection.deleteOne({_id: restaurant, type:"restaurant"})
 		.then(result=>{
-			if(!result.acknowledged && !deleteCount==1){
+			console.log(result)
+			if(result.acknowledged && !result.deletedCount==1){
 				stat=0; msg="Il semblerait que le compte soit introuvable";
 			}
 			res.send({status:stat, message:msg})
