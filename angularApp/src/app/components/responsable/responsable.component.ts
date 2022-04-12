@@ -18,9 +18,9 @@ export class ResponsableComponent implements OnInit {
   inscription="responsable/inscription"
 
   liens=[
-    {libelle:'Les commandes', cible:"/restaurant/voir-commandes", connect:true},
-    // {libelle: 'Gestion des livreurs', cible:"", connect:true},
-    // {libelle:"Gestion des restos", cible:"", connect:true},
+    {libelle:'Les commandes', cible:"/responsable/voir-commandes", connect:true},
+    {libelle: 'Gestion des livreurs', cible:"/responsable/gestion-livreurs", connect:true},
+    {libelle:"Gestion des restos", cible:"/responsable/gestion-restaurants", connect:true},
     // {libelle:"Les bénéfices", cible:"", connect:true},
   ]
 

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { urls } from 'src/environments/environment';
+import { ClientComponent } from '../client/client.component';
 
 @Component({
   selector: 'app-liste-plats',
@@ -16,7 +17,8 @@ export class ListePlatsComponent implements OnInit {
   restaurant_id="";
   constructor(private route:ActivatedRoute,
               private httpClient: HttpClient,
-              private app:AppComponent) {
+              private app:AppComponent,
+              private client:ClientComponent) {
   this.restaurant={};
   this.plats=[];
               }
@@ -41,6 +43,7 @@ export class ListePlatsComponent implements OnInit {
           break;
         case 2:
           alert("Veuillez vous connecter pour commander s'il vous plaît");
+          this.client.removeUser();
       }
     }, (err:any)=>{
       alert('Il y eu une erreur lors de la connexion au serveur');

@@ -23,6 +23,7 @@ import { ListeLivreursComponent } from './liste-livreurs/liste-livreurs.componen
 import { InscriptionLivreurComponent } from './components/inscription-livreur/inscription-livreur.component';
 import { InscriptionRestaurantComponent } from './components/inscription-restaurant/inscription-restaurant.component';
 import { LiensComponent } from './components/liens/liens.component';
+import { GestionRestaurantsComponent } from './components/gestion-restaurants/gestion-restaurants.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { LiensComponent } from './components/liens/liens.component';
     ListeLivreursComponent,
     InscriptionLivreurComponent,
     InscriptionRestaurantComponent,
-    LiensComponent
+    LiensComponent,
+    GestionRestaurantsComponent
   ],
   imports: [
     BrowserModule,

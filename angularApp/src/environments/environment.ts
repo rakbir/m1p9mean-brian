@@ -24,6 +24,8 @@ export const urls={
   supprimer_plat:'http://localhost:3000/plats/supprimer',
   liste_commandes:"http://localhost:3000/commandes/voir",
   liste_livreurs:'http://localhost:3000/livreurs/liste',
+  supprimer_liveur:'http://localhost:3000/livreurs/suppression',
+  supprimer_restaurant:"http://localhost:3000/restaurants/suppression",
   deconnexion:"http://localhost:3000/utilisateurs/deconnexion"
 }
 

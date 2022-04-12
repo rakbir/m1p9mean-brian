@@ -21,5 +21,7 @@ export const urls={
   supprimer_plat:'https://m1p9mean-brian-back.herokuapp.com/plats/supprimer',
   liste_commandes:"https://m1p9mean-brian-back.herokuapp.com/commandes/voir",
   liste_livreurs:'https://m1p9mean-brian-back.herokuapp.com/livreurs/liste',
+  supprimer_liveur:'https://m1p9mean-brian-back.herokuapp.com/livreurs/suppression',
+  supprimer_restaurant:"https://m1p9mean-brian-back.herokuapp.com/restaurants/suppression",
   deconnexion:"https://m1p9mean-brian-back.herokuapp.com/utilisateurs/deconnexion"
 }

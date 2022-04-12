@@ -20,7 +20,9 @@ export class ListeRestosComponent implements OnInit {
   nbpages=0;
   recherche="";
   
-  constructor(private httpClient:HttpClient, private app:AppComponent) { }
+  constructor(private httpClient:HttpClient, private app:AppComponent) {
+    this.restaurants=[];
+  }
 
   changeState(){
     this.isConnected.emit();

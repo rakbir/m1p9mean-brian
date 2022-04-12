@@ -1,0 +1,27 @@
+<h1 class="text-center border-bottom pb-2">{{titre}}
+    <span *ngIf="loading">
+        <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+    </span>
+</h1>
+<button class="mx-auto btn-dark btn-sm" (click)="getLivreurs()">
+    <span *ngIf="loading">
+        <i  class="fa-solid fa-sync fa-spin"></i>
+    </span>
+    <span *ngIf="!loading"><i class="fa fa-refresh"></i></span>
+    <span class="pl-2">Rafraîchir</span>
+</button>
+<div id="liste">
+    <div class="col-md-10 p-2 m-2" *ngFor="let livreur of livreurs; let i=index">
+        <div id="renseignements">
+            <p><span class="font-weight-bold">Nom:</span> {{ livreur.nom }}</p>
+            <p><span class="font-weight-bold">Mail:</span> {{ livreur.mail}}</p>
+        </div>
+        <div class="validation">
+            <button class="btn btn-danger" (click)="supprimer(i)">Supprimer</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-7 mx-auto text-center m-2">
+    <button class="btn btn-primary btn-sm" *ngIf="skip > 0" (click)="precedent()">Précedent</button>
+    <button class="btn btn-primary btn-sm" *ngIf="page!=nbpages" (click)="suivant()">Suivant</button>
+</div> 
